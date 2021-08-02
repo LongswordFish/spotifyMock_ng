@@ -10,7 +10,7 @@ import {AuthService} from '../auth.service';
 })
 
 export class RegisterComponent implements OnInit {
-  registerUser:RegisterUser={"userName": "", "password": "", "password2": ""}; 
+  registerUser:RegisterUser={userName: "", password: "", password2: ""}; 
   warning:any;
   success:boolean = false;
   loading:boolean = false; 
@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit():void{
     if(this.registerUser && (this.registerUser.password === this.registerUser.password2)){
-      console.log(this.registerUser);
       this.loading=true;
       this.sub=this.auth.register(this.registerUser).subscribe(()=>{
         this.success=true;
@@ -36,7 +35,15 @@ export class RegisterComponent implements OnInit {
         this.warning=err.error.message;
         this.loading=false;
       });
+    }else if(this.registerUser && this.registerUser.password !== this.registerUser.password2){
+      this.success=false;
+      this.warning="Two passwords are not the same!";
+      this.loading=false;
+    }else{
+      console.log("something wrong");
     }
+    
+  
   }
 
   ngOnDestroy(){
