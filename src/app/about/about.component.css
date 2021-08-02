@@ -1,0 +1,16 @@
+.text-center{
+    text-align: center;
+}
+
+.text-center div{
+    margin-top: 1.5em;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.inline-block a{
+    margin-left: 2em;
+    margin-right: 2em;
+}
