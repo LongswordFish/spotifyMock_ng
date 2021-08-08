@@ -22,12 +22,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit():void{
     if(this.user?.userName!= "" && this.user?.password!= ""){
-      console.log(this.user);
       this.loading=true;
       this.sub=this.auth.login(this.user).subscribe((success)=>{
         this.warning=null;
         this.loading=false;
-        console.log(success);
         localStorage.setItem('access_token',success.token);
         this.router.navigate(['/newReleases']);
       },  (err)=> {

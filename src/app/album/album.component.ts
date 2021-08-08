@@ -21,7 +21,6 @@ export class AlbumComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
- 
 
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -36,9 +35,11 @@ export class AlbumComponent implements OnInit {
   }
 
   addToFavourites(trackID:String):void{
-    if(this.data.addToFavourites(trackID)){
+    this.sub =this.data.addToFavourites(trackID).subscribe(()=>{
       this.matSnackBar.open("Adding to Favourites...", "Done", { duration: 1500 });
-    }
+    },()=>{
+      this.matSnackBar.open("Unable to add song to Favourites", "Done", { duration: 1500 });
+    })
   } 
 
 }
